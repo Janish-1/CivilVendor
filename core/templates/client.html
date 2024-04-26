@@ -1,0 +1,156 @@
+<!-- client_create.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Client</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<style>
+    .nav ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.nav li {
+  display: inline-block;
+  margin-left: 20px;
+}
+
+.nav li a {
+  color: #333;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 18px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.nav li a.active,
+.nav li a:hover {
+  background-color: #f39908;
+  color: #fff;
+}
+</style>
+    
+    
+</head>
+<body>
+    <!-- <nav>
+        <div class="logo">
+          <img
+            src="{% static 'image/cementvendor.jpg' %}"
+            alt="LOGO"
+            height="75px"
+            width="150px"
+          />
+        </div>
+  
+        <div class="navbar">
+          <ul class="nav-menu">
+            <li class="nav-item">
+              <a href="{% url 'home' %}" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'status' %}" class="nav-link">Check Status</a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'contact' %}" class="nav-link">Contact Us</a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'clientview' %}"class="nav-link">Client Form</a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'logout' %}"class="nav-link">Logout</a>
+            </li>
+          </ul>
+        </div>
+  
+        <div class="hamburger">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      </nav> -->
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h2 class="mb-4">Create Client</h2>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone_number">Phone Number</label>
+                    <input type="text" class="form-control" id="phone_number" name="phone_number" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="agency_name">Agency Name</label>
+                    <input type="text" class="form-control" id="agency_name" name="agency_name" required>
+                </div>
+                <div class="form-group">
+                    <label for="GST_number">GST Number</label>
+                    <input type="text" class="form-control" id="GST_number" name="GST_number" required>
+                </div>
+                <div class="form-group">
+                    <label for="GST_file">GST File</label>
+                    <input type="file" class="form-control-file" id="GST_file" name="GST_file" required>
+                </div>
+                <div class="form-group">
+                    <label for="Aadhar">Aadhar</label>
+                    <input type="text" class="form-control" id="Aadhar" name="Aadhar" required>
+                </div>
+                <div class="form-group">
+                    <label for="Aadhar_file">Aadhar File</label>
+                    <input type="file" class="form-control-file" id="Aadhar_file" name="Aadhar_file" required>
+                </div>
+                <div class="form-group">
+                    <label for="PAN_number">PAN Number</label>
+                    <input type="text" class="form-control" id="PAN_number" name="PAN_number" required>
+                </div>
+                <div class="form-group">
+                    <label for="PAN_file">PAN File</label>
+                    <input type="file" class="form-control-file" id="PAN_file" name="PAN_file" required>
+                </div>
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <textarea class="form-control" id="address" name="address"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="company">Company</label>
+                    <select class="form-control" id="company" name="company" required>
+                        <option value="">Select Company</option>
+                        {% for company in companies %}
+                            <option value="{{ company.id }}">{{ company.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Create</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% if messages %}
+        <script>
+            window.addEventListener('load', function() {
+                swal({
+                    // title: "{{ message.tags }}",
+                    text: "{{ messages }}",
+                    icon: "success"
+                });
+            });
+            </script>
+      {% endif %}
+
+</body>
+</html>

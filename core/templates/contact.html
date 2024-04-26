@@ -1,0 +1,169 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sample Header</title>
+    <link rel="stylesheet" href="{% static 'css/contact.css' %}" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+    <script
+      src="https://kit.fontawesome.com/a076d05399.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body>
+    <nav>
+      <div class="logo">
+        <img
+          src="{% static 'image/cementvendor.jpg' %}"
+          alt="LOGO"
+          height="75px"
+          width="150px"
+        />
+      </div>
+
+      <div class="navbar">
+        <ul class="nav-menu">
+          <li class="nav-item">
+            <a href="{% url 'home' %}" class="nav-link">Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'status' %}" class="nav-link">Check Status</a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'contact' %}" class="nav-link">Contact Us</a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'clientview' %}"class="nav-link">Client Form</a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'logout' %}"class="nav-link">Logout</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="hamburger">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+    </nav>
+    <br />
+    <br />
+    <div id="maindiv">
+      <div class="cont">
+        <form id="contact-form" action="{% url 'contact_view' %}" method="POST">
+          {% csrf_token %}
+          <h2 class="h2class">Contact Us</h2>
+          <div class="input-group">
+            <label for="name">Your Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Your Name"
+              required
+            />
+          </div>
+          <div class="input-group">
+            <label for="email">Your Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Your Email"
+              required
+            />
+          </div>
+          <div class="input-group">
+            <label for="subject">Subject</label>
+            <input
+              type="text"
+              id="subject"
+              name="subject"
+              placeholder="Subject"
+              required
+            />
+          </div>
+          <div class="input-group">
+            <label for="message">Your Message</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="5"
+              placeholder="Your Message"
+              required
+            ></textarea>
+          </div>
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
+
+    <footer>
+      <marquee
+        behavior=""
+        direction="left"
+        style="background-color: white; font-size: 80px; color: #000"
+        >Cement Architecture</marquee
+      >
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>About Us</h3>
+          <p>
+            A cement vendor code system assigns unique identifiers to products,
+            facilitating inventory management, quality control, and distribution
+            across supply chains.
+          </p>
+        </div>
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'status' %}">Check Status</a></li>
+            <li><a href="{% url 'contact' %}">Contact Status</a></li>
+            <li><a href="{% url 'clientview' %}">Client Form</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Follow Us</h3>
+          <div class="footer-social">
+            <ion-icon name="logo-facebook" style="font-size: 26px"></ion-icon>
+            <ion-icon name="logo-linkedin" style="font-size: 26px"></ion-icon>
+            <ion-icon name="logo-twitter" style="font-size: 26px"></ion-icon>
+            <ion-icon name="logo-instagram" style="font-size: 26px"></ion-icon>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="{% static 'js/3.js' %}"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+    {% if messages %}
+        <script>
+            window.addEventListener('load', function() {
+                swal({
+                    // title: "{{ message.tags }}",
+                    text: "{{ messages }}",
+                    icon: "success"
+                });
+            });
+            </script>
+      {% endif %}
+  </body>
+
+</html>

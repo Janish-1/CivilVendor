@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Page</title>
+</head>
+<body>
+    <h1>Search Page</h1>
+    <form method="post" action="{% url 'search' %}">
+        {% csrf_token %}
+        <label for="mobile">Enter Mobile Number:</label>
+        <input type="text" id="mobile" name="mobile" required>
+        <button type="submit">Search</button>
+    </form>
+    {% if ven %}
+        <h2>Client Details:</h2>
+        <p>Name: {{ ven.name }}</p>
+        <p>Phone Number: {{ ven.phone_number }}</p>
+        <!-- Add more details if needed -->
+    {% endif %}
+</body>
+</html>

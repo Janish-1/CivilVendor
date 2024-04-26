@@ -1,0 +1,659 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sample Header</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- <link rel="stylesheet" href="./css/cement.css" /> -->
+    <style>
+
+/* Global Styles */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  background-size: cover;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Header Styles */
+header {
+  /* background-color: rgba(255, 255, 255, 0.9);  */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px 0;
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+  margin-top: 20px;
+  opacity: 1;
+}
+ .container {
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+} 
+
+
+.nav ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.nav li {
+  display: inline-block;
+  margin-left: 20px;
+}
+
+.nav li a {
+  color: #333;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 18px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.nav li a.active,
+.nav li a:hover {
+  background-color: #f39908;
+  color: #fff;
+}
+
+/* Main Section Styles */
+main {
+  padding-top: 150px;
+  text-align: center;
+}
+
+main h1 {
+  font-size: 48px;
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  margin-bottom: 30px;
+}
+
+main input[type="text"],
+main button {
+  padding: 15px 30px;
+  font-size: 18px;
+  margin-top: 20px;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.3s ease;
+  border-radius: 25px;
+  font-family: "Poppins", sans-serif;
+}
+
+main button {
+  width: 300px;
+  height: 50px;
+  background-color: #f9a136;
+  color: #000;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+main input[type="text"] {
+  width: 300px;
+  height: 50px;
+  border: 2px solid #f38108;
+  padding: 10px;
+  transition: border-color 0.3s ease;
+}
+
+main input[type="text"]::placeholder {
+  color: #999;
+  font-style: italic;
+}
+
+main input[type="text"]:focus,
+main button:hover {
+  background-color: #ff9900;
+  color: #fff;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  header {
+    padding: 15px 0;
+    margin-bottom: 98px;
+  }
+
+  .logo {
+    width: 50px;
+  }
+
+  .nav li a {
+    font-size: 16px;
+    padding: 8px 12px;
+  }
+
+  main h1 {
+    font-size: 36px;
+  }
+
+  main input[type="text"],
+  main button {
+    padding: 12px 24px;
+    font-size: 16px;
+  }
+
+  main input[type="text"] {
+    width: calc(100% - 40px);
+  }
+
+  main button {
+    width: calc(100% - 40px);
+  }
+}
+.container img {
+  height: 500px;
+  opacity: 1;
+  width: 500px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+
+footer {
+  background-color: #333;
+  color: #fff;
+  margin-top: 35px;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-section {
+  flex: 1 1 300px;
+  margin: 10px;
+}
+
+.footer-section h3 {
+  margin-bottom: 10px;
+}
+
+.footer-section ul {
+  list-style: none; /* Remove default list styles */
+  padding: 0; /* Remove default padding */
+}
+
+.footer-section ul li a {
+  color: white; /* Set font color to white */
+  text-decoration: none; /* Remove underline from links */
+}
+
+.footer-social {
+  margin-top: 20px;
+}
+
+.footer-social a {
+  display: inline-block;
+  margin: 0 10px;
+  color: #fff;
+  font-size: 24px;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+
+.footer-social a:hover {
+  transform: translateY(-3px);
+}
+
+@media (max-width: 768px) {
+  .footer-section {
+    flex: 1 1 100%;
+  }
+}
+.marquee {
+  height: 90px;
+  font-size: 70px;
+  text-align: center;
+  background-color: white;
+}
+
+/* Mobile Devices */
+@media only screen and (max-width: 768px) {
+  .container {
+    max-width: 90%;
+    padding: 0 10px;
+  }
+
+  main {
+    padding-top: 100px;
+  }
+
+  main h1 {
+    font-size: 36px;
+  }
+
+  main input[type="text"],
+  main button {
+    width: calc(100% - 40px);
+    margin: 10px 0;
+  }
+}
+
+.logo {
+  color: #000000;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+nav {
+  height: 75px;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-around;
+  margin: -20px;
+  padding: 0 1rem;
+  text-align: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  /* background: #360033;
+  background: -webkit-linear-gradient(-8deg, #0b8793, #360033);
+  background: linear-gradient(-8deg, #0b8793, #360033); */
+  background-color: #ffffff;
+  position: fixed;
+}
+
+ul {
+  margin-bottom: 0;
+}
+
+.navbar {
+  text-align: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.nav-menu li {
+  list-style: none;
+  padding: 0 1rem;
+}
+
+.nav-menu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0 auto;
+  text-align: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
+}
+
+a.nav-link {
+  color: #000000;
+  text-decoration: none;
+  font-size: 1.5rem;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+a.nav-link:hover {
+  color: orange;
+}
+
+.hamburger {
+  display: none;
+}
+
+.bar,
+.fa-times {
+  width: 1.5rem;
+  height: 3px;
+  display: block;
+  color: #fff;
+  padding: 0;
+  margin: 6px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  background-color: #000000;
+}
+
+.bar:nth-child(1) {
+  width: 100%;
+}
+
+.bar:nth-child(2) {
+  width: 200%;
+}
+
+.bar:nth-child(3) {
+  width: 300%;
+}
+
+@media (max-width: 992px) {
+  .hamburger {
+    display: block;
+  }
+  .active .bar:nth-child(2) {
+    opacity: 0;
+  }
+  .active .bar:nth-child(1) {
+    -webkit-transform: translateY(8px) rotate(-315deg);
+    transform: translateY(8px) rotate(-315deg);
+    width: 300%;
+  }
+  .active .bar:nth-child(3) {
+    -webkit-transform: translateY(-10px) rotate(-45deg);
+    transform: translateY(-10px) rotate(-45deg);
+    width: 300%;
+  }
+  .nav-menu {
+    width: 100%;
+    height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 75px;
+    right: -66%;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    margin: 0 auto;
+  }
+
+  .nav-menu li {
+    padding: 1rem 0;
+  }
+
+  a.nav-link {
+    margin: 1rem 0;
+    color: #333;
+    z-index: 1;
+  }
+
+  .active {
+    z-index: 100;
+    transition: 0.2s ease;
+
+    font-weight: 800;
+    top: -225px;
+    right: -69px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  a.nav-link {
+    padding: 0.75rem 0;
+  }
+}
+
+    .container {
+    margin-left: 2%;
+    width: 100%;
+    margin: 20px auto;
+    overflow: hidden;
+    padding: 3%;
+  }
+
+  .left {
+    float: left;
+    width: 47%;
+    padding-right: 10px;
+  }
+
+  .right {
+    float: right;
+    width: 50%;
+    padding-left: 20px;
+  }
+
+  img {
+    max-width: 100%;
+    height: 80px;
+  }
+
+  @media screen and (max-width: 768px) {
+    .left, .right {
+      width: 100%;
+      float: none;
+      padding: 0;
+    }
+  }
+
+
+
+
+
+  .container2 {
+    max-width: 800px;
+    margin: 20px auto;
+    overflow: hidden;
+  }
+
+  .field1 {
+    float: left;
+    width: 47%;
+    padding-right: 20px;
+  }
+
+  .field2 {
+    float: right;
+    width: 46%;
+    padding-left: 20px;
+  }
+
+  .paragraph {
+    margin-top: 0;
+    margin-bottom: 20px;
+  }
+
+  @media screen and (max-width: 768px) {
+    .field1, .field2 {
+      width: 100%;
+      float: none;
+      padding: 0;
+    }
+  }
+
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  /* Hover effect */
+  button:hover {
+    background-color: #0056b3;
+  }
+
+  .cong{
+    color: rgba(0, 218, 4, 0.942);
+  }
+    </style>
+    <style>
+      /* Define CSS styles for different statuses */
+      .cong {
+          /* Default style */
+          color: rgb(254, 59, 59);
+      }
+      .pending {
+          /* Style for pending status */
+          color: rgb(255, 211, 79);
+      }
+      .accepted {
+          /* Style for accepted status */
+          color: rgb(48, 255, 48);
+      }
+  </style>
+  </head>
+
+  <body>
+    <nav>
+      <div class="logo">
+        <img
+          src="{% static 'image/cementvendor.jpg' %}"
+          alt="LOGO"
+          height="75px"
+          width="150px"
+        />
+      </div>
+
+      <div class="navbar">
+        <ul class="nav-menu">
+          <li class="nav-item">
+            <a href="{% url 'home' %}" class="nav-link">Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'status' %}" class="nav-link">Check Status</a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'contact' %}" class="nav-link">Contact Us</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="hamburger">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+    </nav>
+
+    <div class="container">
+      
+        
+      
+      <div class="left">
+        <br><br>
+        <p>Hello,</p> <h3>{{ ven.name }}</h3>
+        {% if message %}
+        <!-- Apply class based on status -->
+        <h2 class="cong {% if ven.status == 'pending' %}pending{% elif ven.status == 'accepted' %}accepted{% endif %}">
+            {{ message }}
+        </h2>
+        {% endif %}
+        <h2>Vendor Code {{ ven.vendor_code }}</h2>
+        <hr>
+    
+        <div class="container2">
+          <div class="field1">
+           <p>Mobile Number: <b>{{ ven.phone_number }}</b></p>
+           <p>Email id:<b>{{ ven.email }}</b></p>
+           <p>Agency Name/Construction Name/Project Name:<b>{{ ven.agency_name }}</b></p>
+           <p>GST:<b>{{ ven.GST_number }}</b> </p>
+           <p>Aadhar:<b>{{ ven.Aadhar }}</b></p>
+           <p>PAN:<b>{{  ven.PAN_number }}</b></p>
+           <hr>
+          </div>
+          <div class="field2">
+            <p>Account Number:<b>60478986115</b> </p>
+            <p>IFSC Code :<b>MAHB0000311</b> </p>
+            <p>Holder Name:<b>Ultratech Cement Limited</b> </p>
+            <p>Branch :<b>Andheri East Mumbai</b> </p>
+            <form action="{% url 'genpdf' %}" method="post">
+              {% csrf_token %}  
+              <input type="text" name="vendor_code" value="{{ ven.vendor_code}}" style="display: none;">
+              <button type="submit">Approval Letter</button>
+            </form>
+            
+            <hr>
+          </div>
+        </div>
+    
+      </div>
+      <div class="right">
+        <img src="{{ ven.company.logo.url }}" alt="Image">
+      </div>
+      <hr>
+      
+    </div>
+
+    <footer>
+      <marquee
+        behavior=""
+        direction="left"
+        style="background-color: white; font-size: 80px; color: #000"
+        >Cement Architecture</marquee
+      >
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>About Us</h3>
+          <p>
+            A cement vendor code system assigns unique identifiers to products,
+            facilitating inventory management, quality control, and distribution
+            across supply chains.
+          </p>
+        </div>
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'status' %}">Check Status</a></li>
+            <li><a href="{% url 'contact' %}">Contact Status</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Follow Us</h3>
+          <div class="footer-social">
+            <ion-icon name="logo-facebook" style="font-size: 26px"></ion-icon>
+            <ion-icon name="logo-linkedin" style="font-size: 26px"></ion-icon>
+            <ion-icon name="logo-twitter" style="font-size: 26px"></ion-icon>
+            <ion-icon name="logo-instagram" style="font-size: 26px"></ion-icon>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="{% static 'js/3.js' %}"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+  </body>
+</html>
