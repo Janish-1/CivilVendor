@@ -1,0 +1,83 @@
+If you need to set up a command that starts a Django project using `runserver` without needing to activate a virtual environment each time, you can create a script or modify a systemd service to handle the Python environment and dependencies correctly. Below are instructions on how to create a simple shell script for launching your Django app and how to configure a systemd service directly to use `runserver` for development purposes.
+
+### Creating a Shell Script
+
+1. **Create a Shell Script**:
+   Navigate to your Django project directory (where `manage.py` is located) and create a new shell script:
+
+   ```bash
+   nano start_myapp.sh
+   ```
+
+2. **Edit the Script**:
+   Add the following lines to handle the runserver command. This script assumes Python and all required packages are installed system-wide or that the user managing the service has the correct environment settings.
+
+   ```bash
+   #!/bin/bash
+   # Start Django development server on port 8000
+   /usr/bin/python3 /path/to/your/django/project/manage.py runserver 0.0.0.0:8000
+   ```
+
+   Replace `/usr/bin/python3` with the path to your Python interpreter if different, and replace `/path/to/your/django/project/` with the actual path to your Django project.
+
+3. **Make the Script Executable**:
+   ```bash
+   chmod +x start_myapp.sh
+   ```
+
+4. **Run the Script**:
+   ```bash
+   ./start_myapp.sh
+   ```
+
+This script will start the Django development server on port 8000, and it can be run directly without needing to source any environment beforehand.
+
+### Configuring a Systemd Service to Use `runserver`
+
+If you want to automate the process of starting your Django application using systemd (note that using `runserver` for production environments is not recommended):
+
+1. **Create a systemd service file**:
+   ```bash
+   sudo nano /etc/systemd/system/mydjangoapp.service
+   ```
+
+2. **Add the following content to the service file**:
+   ```ini
+   [Unit]
+   Description=Django Development Server
+   After=network.target
+
+   [Service]
+   Type=simple
+   User=<username>
+   ExecStart=/usr/bin/python3 /path/to/your/django/project/manage.py runserver 0.0.0.0:8000
+   Restart=on-failure
+   WorkingDirectory=/path/to/your/django/project
+
+   [Install]
+   WantedBy=multi-user.target
+   ```
+
+   Replace `<username>` with the username of the user under which you want to run the server. Adjust the paths accordingly.
+
+3. **Reload systemd to recognize the new service**:
+   ```bash
+   sudo systemctl daemon-reload
+   ```
+
+4. **Start the service**:
+   ```bash
+   sudo systemctl start mydjangoapp.service
+   ```
+
+5. **Enable the service to start on boot**:
+   ```bash
+   sudo systemctl enable mydjangoapp.service
+   ```
+
+6. **Check the status of the service**:
+   ```bash
+   sudo systemctl status mydjangoapp.service
+   ```
+
+This systemd service setup will ensure your Django app runs on system startup and keeps running across failures, using Django’s `runserver`. Remember, for a production environment, it is advisable to use a more robust WSGI server like Gunicorn or uWSGI and potentially place it behind a reverse proxy like Nginx or Apache.
